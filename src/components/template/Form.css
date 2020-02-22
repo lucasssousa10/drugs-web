@@ -1,0 +1,16 @@
+/*tbody {
+    position: absolute;
+    left: 0px;
+    width: 0px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    animation: myAnimation 1s ease 1s 3 alternate forwards;
+  }
+  
+  @keyframes myAnimation {
+    100% {
+      left: 70%;
+    }	
+  }
+*/
