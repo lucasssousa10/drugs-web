@@ -248,6 +248,7 @@ export const Messages = {
 			"fields": {
 				"id": "#",
 				"matricula": "Matrícula",
+				"nome": "Nome",
 				"password": "Senha",
 				"email": "Email",
 				"role": "Grupo de Usuário",

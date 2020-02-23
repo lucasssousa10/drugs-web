@@ -66,40 +66,20 @@ class UsersAdd extends BasePageForm
 
 	render()
 	{
-        let campo1 = []
-        let campo2 = []
-        let campo3 = []
-        if(this.state.role_id === "1" || this.state.role_id === "2"){
-            campo1 = ""
-            campo2 = ""
-            campo3 = ""
-
-        }else if(this.state.role_id === "3"){
-            campo1 = <SelectField empty={ true } value_name="id" name="centro_estagio_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.centro_estagio' required="required" colsize="6" url="centro-estagio/all" />
-            campo2 = ""
-            campo3 = ""
-        }else if(this.state.role_id === "4"){
-            campo1 = ""
-			campo2 = <SelectField empty={ true } value_name="id" name="empresa_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.empresa' required="required" colsize="6" url="empresa/all" />
-            campo3 = ""
-        }else if(this.state.role_id === "5"){
-            campo1 = ""
-			campo2 = ""
-            campo3 = <SelectField empty={ true } value_name="id" name="estudante_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.estudante' required="required" colsize="6" url="estudante/all" />
-        }
+        
 		return (
 			<FormPage title="page.user.add.title">
 				<FormRow>
-					<InputInGroup type="text" name="username" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.username' required="required" colsize="6" />
+					<InputInGroup type="text" name="nome" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.user.fields.nome' required="required" colsize="6" />
+					
 					<InputInGroup type="email" name="email" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.user.fields.email' required="required" colsize="6" />
 				</FormRow>
-
 				<FormRow>
+					<InputInGroup type="text" name="matricula" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.user.fields.matricula' required="required" colsize="6" />
+
 					<InputInGroup type="password" name="password" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.user.fields.password' required="required" colsize="6" />
 				</FormRow>
@@ -107,10 +87,8 @@ class UsersAdd extends BasePageForm
 				<FormRow>
 					<SelectField empty={ true } value_name="id" name="role_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.user.fields.role' required="required" colsize="6" url="roles/all" />
-				    {campo1}
-				    {campo2}
-				    {campo3}
 				</FormRow>
+				
 				<FormRow>
 					<ButtonSubmit text="layout.form.sign" onClick={ this.handleOnSubmit } />
 					<ButtonCancel text="layout.form.cancel" onClick={ this.handleCancel } />
@@ -160,54 +138,30 @@ class UsersEdit extends BasePageForm
 		if (this.props.role === "1"){
 			master_permission = true;
 		}
-			
-		let campo1 = []
-        let campo2 = []
-        let campo3 = []
-        if(this.state.role_id === "1" || this.state.role_id === "2"){
-            campo1 = ""
-            campo2 = ""
-            campo3 = ""
-
-        }else if(this.state.role_id === "3" || this.state.role_id === 3){
-            campo1 = <SelectField empty={ true } value_name="id" name="centro_estagio_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.centro_estagio' required="required" colsize="6" url="centro-estagio/all" value={this.state.centro_estagio_id}/>
-            campo2 = ""
-            campo3 = ""
-        }else if(this.state.role_id === "4"|| this.state.role_id === 4){
-            campo1 = ""
-			campo2 = <SelectField empty={ true } value_name="id" name="empresa_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.empresa' required="required" colsize="6" url="empresa/all" value={this.state.empresa_id}/>
-            campo3 = ""
-        }else if(this.state.role_id === "5"|| this.state.role_id === 5){
-            campo1 = ""
-			campo2 = ""
-            campo3 = <SelectField empty={ true } value_name="id" name="estudante_id" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
-						label='page.user.fields.estudante' required="required" colsize="6" url="estudante/all" value={this.state.estudante_id}/>
-        }
+		
 		return (
 			this.state.error ?
 			( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
-			<FormPage title="page.user.add.title">
+			<FormPage title="page.user.edit.title">
 				<FormRow>
-					<InputInGroup type="text" name="username" errors={ this.state.fieldErrors } value={this.state.username} onChange={ this.handleChange }
-						label='page.user.fields.username' required="required" colsize="6" />
-					<InputInGroup type="email" name="email" errors={ this.state.fieldErrors }  value={this.state.email} onChange={ this.handleChange }
-						label='page.user.fields.email' required="required" colsize="6" />
+					<InputInGroup type="text" name="nome" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.user.fields.nome' required="required" colsize="6" value={ this.state.nome || '' } />
+					
+					<InputInGroup type="email" name="email" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.user.fields.email' required="required" colsize="6" value={ this.state.email || '' } />
 				</FormRow>
-
 				<FormRow>
-					<InputInGroup disabled={true} type="password" name="password" errors={ this.state.fieldErrors }   onChange={ this.handleChange }
-						label='page.user.fields.password' required="required" colsize="6" />
+					<InputInGroup type="text" name="matricula" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.user.fields.matricula' required="required" colsize="6" value={ this.state.matricula || '' } />
+
+					<InputInGroup type="password" name="password" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.user.fields.password' required="required" colsize="6" value={ this.state.password || '' } />
 				</FormRow>
 
 				{master_permission ? 
 				<FormRow>
 					<SelectField disabled={!master_permission} empty={ true } value_name="id" name="role_id" errors={ this.state.fieldErrors }  value={this.state.role_id} onChange={ this.handleChange }
 						label='page.user.fields.role' required="required" colsize="6" url="roles/all" />
-					{campo1}
-					{campo2}
-					{campo3}
 				</FormRow>
 				:''}
 				
@@ -261,18 +215,16 @@ class UsersView extends BasePageForm
 	}
 	render()
 	{
-		let fields = [{label:"Username: ", value:this.state.username},
-		{label:"Email: ", value:this.state.email},
-		{label:"Tipo de usuário: ", value:this.state.role_nome},
-		this.state.role_id === 2 ? {label:"Empresa: ", value:this.state.empresa_nome} : ''
+		let fields = [
+			{label:"Matrícula: ", value:this.state.matricula},
+			{label:"Nome: ", value:this.state.nome},
+			{label:"Email: ", value:this.state.email},
+			{label:"Tipo de Usuário", value: (this.state.role ? this.state.role.name : '')}
 		]
-		
-		//{label:"Centro de estágio: ", value:this.state.centro_estagio_nome},
-		
 		return (
 			this.state.error ?
 				( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
-				(<BasicView title={"Usuário " + this.state.username} url={"#user/edit?id=" + this.state.id} fields={fields} onClickEdit={this.onClickEdit}/>)
+				(<BasicView title={"Usuário " + this.state.nome} url={"#user/edit?id=" + this.state.id} fields={fields} onClickEdit={this.onClickEdit}/>)
 		);
 	}
 }

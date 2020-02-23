@@ -17,6 +17,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 
 const Auth = new AuthService();
 const Messages = new MessageService();
@@ -459,7 +462,8 @@ class TableData extends Component
 
 									:
 									<div style={{width:"98%"}}>
-										<button key={ key++ } className="w-33 btn btn-secondary btn-action" style={ {background:ButtonColors[act.field]}} onClick={ (evt) => act.handle(evt, register.id) }><i className={ Icons[act.field] }/></button>
+										<button key={ key++ } className="w-33 btn btn-secondary btn-action" style={ {width: "100%", background:ButtonColors[act.field]}} onClick={ (evt) => act.handle(evt, register.id) }><i className={ Icons[act.field] }/></button>
+
 									</div>
 									}
 								</LightTooltip>
@@ -533,13 +537,14 @@ class TableData extends Component
 					<i className={ Icons.table }/> { Messages.getMessage(this.props.title) }
 					{this.props.buttonRemove ? <div/> : <Link className="btn btn-primary" to={ this.props.addUrl }><i className={ Icons.plus }/></Link> }
 					{this.props.buttonBackRemove ?
-						<a className="btn btn-primary border-right" href={this.props.history.back()}>
+						<a className="btn btn-primary border-right" href={"javascript:history.back();"}>
 							<i className="fas fa-backward"/></a> :  <i/>}
 				</div>
 				{this.props.details}
 				{this.props.filter}
 
 				{this.props.pagination ? this.props.pagination.loaded?((this.props.data.length === 0)? empty_card : card):loading : card}
+
 
 				{this.props.pagination ?
 				<div className="card-footer small text-muted">{ footerPageInfo }</div> : <div/>}
@@ -705,9 +710,10 @@ class FormCol extends Component {
 class BasicView extends Component {
 	render() {
 
+		let i = 1;
 		let text_fields = this.props.fields.map((field) => {
 			return (
-				<tr key={field.label}>
+				<tr key={field.label + '-' + (i++)}>
 					<th><strong>{field.label}</strong></th>
 					<td>{field.value}</td>
 				</tr>
@@ -722,7 +728,7 @@ class BasicView extends Component {
 						{this.props.buttonEditRemove ? '' : <button className="btn btn-primary border-left active" onClick={this.props.onClickEdit}>
 							<i className="fas fa-edit" /></button>}
 						{this.props.buttonBackRemove ? '' :
-							<a className="btn btn-primary border-right" href={this.props.history.back()}>
+							<a className="btn btn-primary border-right" href={"javascript:history.back();"}>
 								<i className="fas fa-backward" /></a>}
 					</div>
 
@@ -827,30 +833,30 @@ class Modal extends Component {
 		return (
 			<div style={{width: "100%"}}>
                 <LightTooltip key={ 213876253 } title={Hints[this.props.act.field]} placement={"top"} arrow>
-				<button key={ this.props.key } className={"w-33 btn btn-secondary btn-action"} style={ {background:ButtonColors[this.props.act.field]}} onClick={this.handleClickOpen}><i className={ Icons[this.props.act.field] }/>
-				</button>
-					</LightTooltip>
-				<Dialog
-					open={this.state.open}
-					onClose={this.handleClose}
-					aria-labelledby="responsive-dialog-title"
-				>
-					<DialogTitle id="responsive-dialog-title">{"Delete"}</DialogTitle>
-					<DialogContent>
-						<DialogContentText>
-							Deseja realmente excluir?
-						</DialogContentText>
-					</DialogContent>
-					<DialogActions>
-						<Button autoFocus onClick={this.handleClose} color="primary">
-							Não
-						</Button>
-						<Button onClick={ this.handleClickYes } color="primary" autoFocus>
-							Sim
-						</Button>
-					</DialogActions>
-					
-				</Dialog>
+			<button key={ this.props.key } className={"w-33 btn btn-secondary btn-action"} style={ {width: "100%", background:ButtonColors[this.props.act.field]}} onClick={this.handleClickOpen}><i className={ Icons[this.props.act.field] }/>
+			</button>
+                </LightTooltip>
+			<Dialog
+				open={this.state.open}
+				onClose={this.handleClose}
+				aria-labelledby="responsive-dialog-title"
+			>
+				<DialogTitle id="responsive-dialog-title">{"Delete"}</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						Deseja realmente excluir?
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button autoFocus onClick={this.handleClose} color="primary">
+						Não
+					</Button>
+					<Button onClick={ this.handleClickYes } color="primary" autoFocus>
+						Sim
+					</Button>
+				</DialogActions>
+				
+			</Dialog>
 			</div>
 		)
 	}
