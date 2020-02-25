@@ -54,5 +54,22 @@ const getMonth = (value) =>
 	}
 };
 
+/*----------------------------------------------------------------------------------------------------*/
 
-export { sleep, formatString , Months, getMonth, getDay, Days, Bool}
+const EditorButtonsList = [
+	['undo', 'redo'],
+	['font', 'fontSize', 'formatBlock'],
+	// ['paragraphStyle'],
+	['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+	['fontColor', 'hiliteColor', 'textStyle'],
+	['removeFormat'],
+	//['outdent', 'indent'],
+	['align', 'horizontalRule', 'list', 'lineHeight'],
+	['table', 'link', 'image', 'video'],
+	['fullScreen', 'showBlocks', 'codeView'],
+	['preview', 'print'],
+	// ['save', 'template'],
+	'/'
+  ];
+
+export { sleep, formatString , Months, getMonth, getDay, Days, Bool, EditorButtonsList }

@@ -3,16 +3,14 @@ import ReactDOM from 'react-dom';
 import BasePageList from '../basePage/BasePageList';
 import BasePageForm from '../basePage/BasePageForm';
 import MessageService from '../../services/MessageService';
-import {TableData, FormPage, FormRow, BasicView, Filter, HtmlContentView} from '../../components/template/Layout';
+import {TableData, FormPage, FormRow, Filter, HtmlContentView} from '../../components/template/Layout';
 import { ButtonSubmit, ButtonCancel} from '../../components/template/Form';
 import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
 
-// Require Editor CSS files.
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-import 'froala-editor/js/plugins.pkgd.min.js';
-import FroalaEditorComponent from 'react-froala-wysiwyg';
+import {EditorButtonsList} from '../../components/utils/Utils';
+import SunEditor, {buttonList} from 'suneditor-react';
+import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 
 const Rest = new RestService();
 
@@ -82,7 +80,10 @@ class AtividadesAdd extends BasePageForm
 		return (
 			<FormPage title="page.atividade.add.title">
 				<FormRow>
-                    <FroalaEditorComponent tag='textarea' config={ configEditor } model={this.state.conteudo} onModelChange={this.handleChange}/>
+					<SunEditor setOptions={{
+						buttonList: EditorButtonsList
+						}} 
+						onChange={this.handleChange}/>
                 </FormRow>
 
                 <br/>
@@ -104,6 +105,7 @@ class AtividadesEdit extends BasePageForm
 		super(props);
 
 		this.handleResponse = this.handleResponse.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	static defaultProps = {
 		urlBase: 'atividade/edit',
@@ -145,7 +147,10 @@ class AtividadesEdit extends BasePageForm
 			( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
 			<FormPage title="page.atividade.edit.title">
 				<FormRow>
-                    <FroalaEditorComponent tag='textarea' config={ configEditor } model={this.state.conteudo} onModelChange={this.handleChange}/>
+					<SunEditor setOptions={{
+						buttonList: EditorButtonsList
+						}} 
+						onChange={this.handleChange}/>
                 </FormRow>
 				<br/>
 				<FormRow>

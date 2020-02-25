@@ -8,11 +8,10 @@ import { ButtonSubmit, ButtonCancel} from '../../components/template/Form';
 import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
 
-// Require Editor CSS files.
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-import 'froala-editor/js/plugins.pkgd.min.js';
-import FroalaEditorComponent from 'react-froala-wysiwyg';
+import {EditorButtonsList} from '../../components/utils/Utils';
+import SunEditor, {buttonList} from 'suneditor-react';
+import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
+
 
 const Rest = new RestService();
 
@@ -68,21 +67,19 @@ class InformativosAdd extends BasePageForm
 
     handleChange(e)
 	{
-        this.setState({"conteudo": e})
+		this.setState({"conteudo": e})
 	}
 
 	render()
 	{
-        
-        let configEditor = {
-            width: 1500,
-            height: 800
-        };
-
+       
 		return (
 			<FormPage title="page.informativo.add.title">
 				<FormRow>
-                    <FroalaEditorComponent tag='textarea' config={ configEditor } model={this.state.conteudo} onModelChange={this.handleChange}/>
+					<SunEditor setOptions={{
+						buttonList: EditorButtonsList
+						}} 
+						onChange={this.handleChange}/>
                 </FormRow>
 
                 <br/>
@@ -104,6 +101,7 @@ class InformativosEdit extends BasePageForm
 		super(props);
 
 		this.handleResponse = this.handleResponse.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	static defaultProps = {
 		urlBase: 'informativo/edit',
@@ -145,7 +143,9 @@ class InformativosEdit extends BasePageForm
 			( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
 			<FormPage title="page.informativo.edit.title">
 				<FormRow>
-                    <FroalaEditorComponent tag='textarea' config={ configEditor } model={this.state.conteudo} onModelChange={this.handleChange}/>
+					<SunEditor setOptions={{
+						buttonList: EditorButtonsList }}
+						onChange={this.handleChange} />
                 </FormRow>
 				<br/>
 				<FormRow>
