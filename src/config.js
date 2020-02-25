@@ -14,7 +14,7 @@ const config = {
 		'year': "2020"
 	},
 	'heroku': {
-		'domain': 'http://localhost:5000',
+		'domain': 'https://drugs-backend.herokuapp.com',
 		'appName': "FollowLife",
 		'version': "0.0.0.1",
 		'company': "IFCE",
@@ -25,8 +25,9 @@ const config = {
 let environment = 'developer';
 require('dotenv').config();
 if(process.env.REACT_APP_NODE_ENV !==  undefined){
-	console.log("AEL")
 	environment = process.env.REACT_APP_NODE_ENV ;
 }
+
+console.log("Starting environment " + environment)
 
 export const Properties = config[environment];
