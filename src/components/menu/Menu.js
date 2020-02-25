@@ -12,6 +12,8 @@ class Administrador extends Component
 			<SideBar>
 				<SideBarItem active={ false } url="/" name='menu.dashboard' icon={ Icons.dashboard } />
 				<SideBarItem active={ false } url="/user/list" name='menu.user.title' icon={ Icons.user } />
+				<SideBarItem active={ false } url="/informativo/list" name='menu.informativo.title' icon={ Icons.info } />
+				<SideBarItem active={ false } url="/atividade/list" name='menu.atividade.title' icon={ Icons.atividades } />
 
 				{/* <SideBarItem active={ false } url="/estudante/list" name='menu.estudante.title' icon={ Icons.users } />
 				<SideBarItem active={ false } url="/centro-estagio/list" name='menu.centro_estagio.title' icon={ Icons.stagecenter } />
@@ -68,7 +70,8 @@ class Usuario extends Component
 			<SideBar>
 				<SideBarItem active={ false } url="/" name='menu.dashboard' icon={ Icons.dashboard } />
 				<SideBarItem active={ false } url="/user/list" name='menu.user.title' icon={ Icons.users } />
-				
+				<SideBarItem active={ false } url="/informativo/list" name='menu.informativo.title' icon={ Icons.info } />
+
 				{/* <SideBarDropDown name='menu.student' icon={ Icons.config } >
                     <SideBarDropDownItem name='menu.estado_civil.title' url="/estado-civil/list" />
                     <SideBarDropDownItem name='menu.categoria_habilitacao.title' url="/categoria-habilitacao/list" />
@@ -97,6 +100,7 @@ class Estudante extends Component
 		return (
 			<SideBar>
 				<SideBarItem active={ false } url="/" name='menu.dashboard' icon={ Icons.dashboard } />
+				
 				{/* <SideBarItem active={ false } url="/centro-estagio/list" name='menu.centro_estagio.title' icon={ Icons.stagecenter } />
 				<SideBarItem active={ false } url="/estudante/list" name='menu.estudante.title' icon={ Icons.users } />
 				<SideBarItem active={ false } url="/escola/list" name='menu.escola.title' icon={ Icons.company } />

@@ -705,6 +705,20 @@ class FormCol extends Component {
 		return (<div className={"form-group col-" + (this.props.tam ? this.props.tam + "-" : "-auto-") + (this.props.colsize ? +this.props.colsize : +"6")}>{this.props.children}</div>);
 	}
 }
+/*----------------------------------------------------------------------------------------------------*/
+
+class HtmlContentView extends Component {
+	render() {
+		return (
+			<div className="card">
+				<div className="card-header">
+					<div className="card-title"><b>{this.props.title}</b></div>
+				</div>
+				<div className="card-body" dangerouslySetInnerHTML={{ __html: this.props.content }}></div>
+			</div>
+		);
+	}
+}
 
 /*----------------------------------------------------------------------------------------------------*/
 class BasicView extends Component {
@@ -731,8 +745,6 @@ class BasicView extends Component {
 							<a className="btn btn-primary border-right" href={"javascript:history.back();"}>
 								<i className="fas fa-backward" /></a>}
 					</div>
-
-
 				</div>
 			}
 			<div className="card-body container">
@@ -864,5 +876,5 @@ class Modal extends Component {
 
 export { CenterCard, AlertDangerForm, NavBar, SideBar, SideBarItem, SideBarDropDown, SideBarDropDownItem,
 		 SideBarDropDownGroup, SideBarDropDownDivider, Footer, ScrollToTop, TableData, TableData2, CenterCard2, FormPage,
-		  FormRow, FormCol, BasicView, Filter, FormColapse};
+		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView};
 

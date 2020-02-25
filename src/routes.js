@@ -6,6 +6,8 @@ import MasterLayout from './components/masterLayout/MasterLayout'
 import Home from './pages/home/Home';
 import About from './pages/about/About';
 import {UsersList ,UsersAdd ,UsersEdit, UsersView} from './pages/users/Users';
+import {InformativosList, InformativosAdd, InformativosEdit, InformativosView} from './pages/informativos/Informativos';
+import {AtividadesList, AtividadesAdd, AtividadesEdit, AtividadesView} from './pages/atividades/Atividades';
 import Login from './pages/login/Login'
 
 const Auth = new AuthService();
@@ -42,6 +44,16 @@ function Routes()
 							<PrivateRoute path="/user/add" component={ (privateRouteProps) => (<UsersAdd {...privateRouteProps} {...props} />) } />
 							<PrivateRoute path="/user/edit" component={ (privateRouteProps) => (<UsersEdit {...privateRouteProps} {...props} />)} />
 							<PrivateRoute path="/user/view" component={ (privateRouteProps) => (<UsersView {...privateRouteProps} {...props} />)} />
+
+							<PrivateRoute path="/informativo/list" component={ (privateRouteProps) => (<InformativosList {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/informativo/add" component={ (privateRouteProps) => (<InformativosAdd {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/informativo/edit" component={ (privateRouteProps) => (<InformativosEdit {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/informativo/view" component={ (privateRouteProps) => (<InformativosView {...privateRouteProps} {...props} />)} />
+
+							<PrivateRoute path="/atividade/list" component={ (privateRouteProps) => (<AtividadesList {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/atividade/add" component={ (privateRouteProps) => (<AtividadesAdd {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/atividade/edit" component={ (privateRouteProps) => (<AtividadesEdit {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/atividade/view" component={ (privateRouteProps) => (<AtividadesView {...privateRouteProps} {...props} />)} />
 
 							<Route path="/login" component={ Login } />
 						</Switch>

@@ -25,7 +25,7 @@ class InputInGroup extends Component
 		} else {
 			classValue = "form-control " + (this.props.class);
 		}
-
+		
 		return (
 			<div className= {"form-group col " + (this.props.colsize ? "col-md-" + this.props.colsize : "")  }>
 				<label>{ Messages.getMessage(this.props.label) }</label>
