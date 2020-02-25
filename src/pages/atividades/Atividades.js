@@ -81,7 +81,8 @@ class AtividadesAdd extends BasePageForm
 			<FormPage title="page.atividade.add.title">
 				<FormRow>
 					<SunEditor setOptions={{
-						buttonList: EditorButtonsList
+							height: 1000,
+							buttonList: EditorButtonsList
 						}} 
 						onChange={this.handleChange}/>
                 </FormRow>
@@ -148,7 +149,8 @@ class AtividadesEdit extends BasePageForm
 			<FormPage title="page.atividade.edit.title">
 				<FormRow>
 					<SunEditor setOptions={{
-						buttonList: EditorButtonsList
+							height: 1000,
+							buttonList: EditorButtonsList
 						}} 
 						onChange={this.handleChange}/>
                 </FormRow>

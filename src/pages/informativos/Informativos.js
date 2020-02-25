@@ -77,7 +77,8 @@ class InformativosAdd extends BasePageForm
 			<FormPage title="page.informativo.add.title">
 				<FormRow>
 					<SunEditor setOptions={{
-						buttonList: EditorButtonsList
+							height: 1000,
+							buttonList: EditorButtonsList
 						}} 
 						onChange={this.handleChange}/>
                 </FormRow>
@@ -144,7 +145,9 @@ class InformativosEdit extends BasePageForm
 			<FormPage title="page.informativo.edit.title">
 				<FormRow>
 					<SunEditor setOptions={{
-						buttonList: EditorButtonsList }}
+							height: 1000,
+							buttonList: EditorButtonsList 
+						}}
 						onChange={this.handleChange} />
                 </FormRow>
 				<br/>
