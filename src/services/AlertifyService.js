@@ -14,5 +14,9 @@ const AlertifyError = (messages) =>
 	}
 }
 
+const AlertifyConfirmDelete = (handleConfirm) => {
+	alertify.confirm('Confirm Title', 'Confirm Message', handleConfirm, function(){});
+}
 
-export { AlertifySuccess, AlertifyError};
+
+export { AlertifySuccess, AlertifyError, AlertifyConfirmDelete};

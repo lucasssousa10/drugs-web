@@ -14,6 +14,7 @@ class Administrador extends Component
 				<SideBarItem active={ false } url="/user/list" name='menu.user.title' icon={ Icons.user } />
 				<SideBarItem active={ false } url="/informativo/list" name='menu.informativo.title' icon={ Icons.info } />
 				<SideBarItem active={ false } url="/atividade/list" name='menu.atividade.title' icon={ Icons.atividades } />
+				<SideBarItem active={ false } url="/questionario/list" name='menu.questionario.title' icon={ Icons.questionario } />
 
 				{/* <SideBarItem active={ false } url="/estudante/list" name='menu.estudante.title' icon={ Icons.users } />
 				<SideBarItem active={ false } url="/centro-estagio/list" name='menu.centro_estagio.title' icon={ Icons.stagecenter } />

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../../services/AuthService';
 import MessageService from '../../services/MessageService';
@@ -719,6 +719,94 @@ class HtmlContentView extends Component {
 }
 
 /*----------------------------------------------------------------------------------------------------*/
+
+class BasicViewWithDetails extends Component {
+	render() {
+
+		let i = 1;
+		let text_fields = this.props.fields.map((field) => {
+			return (
+				<tr key={field.label + '-' + (i++)}>
+					<th><strong>{field.label}</strong></th>
+					<td>{field.value}</td>
+				</tr>
+			);
+		});
+		
+		i = 1;
+		let data_details = this.props.data_details ? this.props.data_details.map((row) => {
+			return (
+				<tr key={i++}>
+					<td>{row.id}</td>
+					<td>{row.descricao}</td>
+				</tr>
+			);
+		}) : '';
+
+		let data_labels = this.props.labels_details ? this.props.labels_details.map((col) => {
+			return (
+				<th>{Messages.getMessage(col)}</th>
+			);
+		}) : '';
+
+		return (<div className="card">
+			{this.props.removeButtons ? '' :
+				<div className="card-header">
+
+					<div className="card-title"><b>{this.props.title}</b>
+						{this.props.buttonEditRemove ? '' : <button className="btn btn-primary border-left active" onClick={this.props.onClickEdit}>
+							<i className="fas fa-edit" /></button>}
+						{this.props.buttonBackRemove ? '' :
+							<a className="btn btn-primary border-right" href={"javascript:history.back();"}>
+								<i className="fas fa-backward" /></a>}
+					</div>
+				</div>
+			}
+			<div className="card-body">
+				<div className="row">
+					<div className="col-5">
+						<div className="panel panel-default">
+							<div className="panel-body">
+								<table className="table profile__table">
+									<tbody>
+										{text_fields}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div className="col-7">
+						{this.props.navflex}
+					</div>
+				</div>
+				<div className={"row"}>
+					{this.props.button_add}
+					{this.props.button_cancel}
+				</div>
+				{ data_details !== "" &&
+					<Fragment>
+						<div className="row">
+							<h3>{this.props.title_details}</h3>
+						</div>
+						<table className="table">
+							<thead>
+								<tr>
+								{ data_labels }
+								</tr>
+							</thead>
+							<tbody>
+								{ data_details }
+							</tbody>
+						</table>
+					</Fragment>
+				}
+			</div>
+		</div>);
+	}
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
 class BasicView extends Component {
 	render() {
 
@@ -745,7 +833,7 @@ class BasicView extends Component {
 					</div>
 				</div>
 			}
-			<div className="card-body container">
+			<div className="card-body">
 			
 				<div className="row">
 					<div className="col-5">
@@ -874,5 +962,5 @@ class Modal extends Component {
 
 export { CenterCard, AlertDangerForm, NavBar, SideBar, SideBarItem, SideBarDropDown, SideBarDropDownItem,
 		 SideBarDropDownGroup, SideBarDropDownDivider, Footer, ScrollToTop, TableData, TableData2, CenterCard2, FormPage,
-		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView};
+		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView, BasicViewWithDetails};
 

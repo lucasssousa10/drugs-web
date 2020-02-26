@@ -8,6 +8,7 @@ import About from './pages/about/About';
 import {UsersList ,UsersAdd ,UsersEdit, UsersView} from './pages/users/Users';
 import {InformativosList, InformativosAdd, InformativosEdit, InformativosView} from './pages/informativos/Informativos';
 import {AtividadesList, AtividadesAdd, AtividadesEdit, AtividadesView} from './pages/atividades/Atividades';
+import {QuestionariosList, QuestionariosAdd, QuestionariosEdit, QuestionariosView, QuestionariosAddQuestion} from './pages/questionario/Questionario';
 import Login from './pages/login/Login'
 
 const Auth = new AuthService();
@@ -55,6 +56,12 @@ function Routes()
 							<PrivateRoute path="/atividade/edit" component={ (privateRouteProps) => (<AtividadesEdit {...privateRouteProps} {...props} />)} />
 							<PrivateRoute path="/atividade/view" component={ (privateRouteProps) => (<AtividadesView {...privateRouteProps} {...props} />)} />
 
+							<PrivateRoute path="/questionario/list" component={ (privateRouteProps) => (<QuestionariosList {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/questionario/add" component={ (privateRouteProps) => (<QuestionariosAdd {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/questionario/edit" component={ (privateRouteProps) => (<QuestionariosEdit {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/questionario/view" component={ (privateRouteProps) => (<QuestionariosView {...privateRouteProps} {...props} />)} />
+							<PrivateRoute path="/questionario/addquestion" component={ (privateRouteProps) => (<QuestionariosAddQuestion {...privateRouteProps} {...props} />)} />
+							
 							<Route path="/login" component={ Login } />
 						</Switch>
 				}

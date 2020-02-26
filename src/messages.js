@@ -57,6 +57,18 @@ export const Messages = {
 			"register": "Registrar",
 			"search": "Consultar",
 			"informativo": "Atividades"
+		},
+		"questionario": {
+			"title": "Questionário",
+			"register": "Registrar",
+			"search": "Consultar",
+			"informativo": "Questionário"
+		},
+		"pergunta": {
+			"title": "Perguntas",
+			"register": "Registrar",
+			"search": "Consultar",
+			"informativo": "Perguntas"
 		}
 	},
 	"action": {
@@ -66,7 +78,8 @@ export const Messages = {
 		"delete": "Deletar",
 		"view": "Visualizar",
 		"contrato" : "Criar contrato",
-		"download": "Download"
+		"download": "Download",
+		"addquestion": "Adicionar Perguntas"
 	},
 	"page": {
 		"user": {
@@ -131,6 +144,38 @@ export const Messages = {
 			},
 			"edit": {
 				"title": "Editar atividades"
+			}
+		},
+		"questionario": {
+			"fields": {
+				"id": "#",
+				"criador": "Criador",
+				"data": "Data",
+				"titulo": "Título"
+			},
+			"add": {
+				"title": "Adicionar questionário"
+			},
+			"list": {
+				"title": "Listar questionário"
+			},
+			"edit": {
+				"title": "Editar questionário"
+			}
+		},
+		"pergunta": {
+			"fields": {
+				"id": "#",
+				"pergunta": "Pergunta"
+			},
+			"add": {
+				"title": "Adicionar pergunta"
+			},
+			"list": {
+				"title": "Listar pergunta"
+			},
+			"edit": {
+				"title": "Editar pergunta"
 			}
 		}
 	},

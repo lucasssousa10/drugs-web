@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import BasePageList from '../basePage/BasePageList';
 import BasePageForm from '../basePage/BasePageForm';
 import MessageService from '../../services/MessageService';
@@ -9,7 +8,7 @@ import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
 
 import {EditorButtonsList} from '../../components/utils/Utils';
-import SunEditor, {buttonList} from 'suneditor-react';
+import SunEditor from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 
 const Rest = new RestService();
@@ -72,11 +71,6 @@ class AtividadesAdd extends BasePageForm
 	render()
 	{
         
-        let configEditor = {
-            width: 1500,
-            height: 800
-        };
-
 		return (
 			<FormPage title="page.atividade.add.title">
 				<FormRow>
@@ -138,10 +132,6 @@ class AtividadesEdit extends BasePageForm
     }
 	render()
 	{ 
-		let configEditor = {
-            width: 1500,
-            height: 800
-		};
 		
 		return (
 			this.state.error ?
@@ -205,9 +195,6 @@ class AtividadesView extends BasePageForm
 	}
 	render()
 	{
-		let fields = [
-			{label:"Conteúdo: ", value:this.state.conteudo},
-		]
 		return (
 			this.state.error ?
 				( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :

@@ -7,6 +7,7 @@ export const ButtonColors = {
     "view": "#32CD32",
     "edit": "#4169E1",
     "delete": "#FF6347",
+    "question": "rgb(71, 221, 255)",
     "plus": "Mais",
     "print": "Print",
     "table": "Tabela",

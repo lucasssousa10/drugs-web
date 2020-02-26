@@ -1,20 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import BasePageList from '../basePage/BasePageList';
 import BasePageForm from '../basePage/BasePageForm';
 import MessageService from '../../services/MessageService';
-import {TableData, FormPage, FormRow, BasicView, Filter, HtmlContentView} from '../../components/template/Layout';
+import {TableData, FormPage, FormRow, Filter, HtmlContentView} from '../../components/template/Layout';
 import { ButtonSubmit, ButtonCancel} from '../../components/template/Form';
 import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
 
 import {EditorButtonsList} from '../../components/utils/Utils';
-import SunEditor, {buttonList} from 'suneditor-react';
+import SunEditor from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 
-
 const Rest = new RestService();
-
 const Messages = new MessageService();
 
 class InformativosList extends BasePageList
@@ -72,7 +69,6 @@ class InformativosAdd extends BasePageForm
 
 	render()
 	{
-       
 		return (
 			<FormPage title="page.informativo.add.title">
 				<FormRow>
@@ -134,10 +130,6 @@ class InformativosEdit extends BasePageForm
     }
 	render()
 	{ 
-		let configEditor = {
-            width: 1500,
-            height: 800
-		};
 		
 		return (
 			this.state.error ?
@@ -201,9 +193,6 @@ class InformativosView extends BasePageForm
 	}
 	render()
 	{
-		let fields = [
-			{label:"Conteúdo: ", value:this.state.conteudo},
-		]
 		return (
 			this.state.error ?
 				( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :

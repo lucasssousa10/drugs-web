@@ -31,7 +31,7 @@ class InputInGroup extends Component
 				<label>{ Messages.getMessage(this.props.label) }</label>
 				<input type={ this.props.type } className={ classValue } id={ this.props.name }  name={ this.props.name }
 					required={ this.props.required } disabled={this.props.disabled} value={this.props.value} autoFocus={ this.props.autofocus } onChange={ this.props.onChange }
-					maxLength={this.props.maxLength} checked={this.props.checked} onBlur={this.props.onBlur === true? this.props.onChange : undefined}/>
+					maxLength={this.props.maxLength} checked={this.props.checked} onBlur={this.props.onBlur === true? this.props.onChange : undefined} readOnly={this.props.readOnly}/>
 				<div className="invalid-feedback">
 					{ this.props.errors[this.props.name] ? this.props.errors[this.props.name] : ''}
 				</div>

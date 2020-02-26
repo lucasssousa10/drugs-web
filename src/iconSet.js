@@ -25,6 +25,8 @@ export const Icons = {
 	"apolice": "fas fa-download",
 	"vaga": "fas fa-user",
 	"encaminhamento": "fas fa-download",
-	"atividades": "fas fa-tasks"
+	"atividades": "fas fa-tasks",
+	"questionario": "fas fa-question",
+	"question": "fas fa-question"
 };
 
