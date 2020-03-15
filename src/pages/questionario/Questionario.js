@@ -128,7 +128,7 @@ class QuestionariosAdd extends BasePageForm
 					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.titulo' required="required" colsize="6" />
                     
-                    <InputInGroup type="text" className="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+                    <InputInGroup type="text" class="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.data' required="required" colsize="2" />
 				</FormRow>
 				
@@ -206,7 +206,7 @@ class QuestionariosEdit extends BasePageForm
 					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.titulo' required="required" colsize="6" value={ this.state.titulo || '' } />
                     
-                    <InputInGroup type="text" className="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+                    <InputInGroup type="text" class="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.data' required="required" colsize="2" value={ this.state.data || '' } />
 				</FormRow>
 				
