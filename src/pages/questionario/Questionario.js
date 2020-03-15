@@ -36,6 +36,11 @@ class QuestionariosList extends BasePageList {
 				label: 'page.questionario.fields.data',
 				field: "data",
 				width: "10%"
+			},
+			{
+				label: 'page.questionario.fields.principal',
+				field: "principal",
+				width: "10%"
 			}
 		]
 	};
@@ -88,19 +93,25 @@ class QuestionariosAdd extends BasePageForm
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleResponse = this.handleResponse.bind(this);
+		this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
 	}
 
     componentDidMount() {
-        Rest.view("me").then(this.handleResponse)
+        Rest.get("me").then(this.handleResponse)
 	}
 	
 	handleResponse(res) {
-		this.setState({"criador": res.data.matricula})
+		this.setState({"criador": res.data.matricula, "principal": false})
 	}
 
     handleChange(e)
 	{
 		this.setState({[e.target.name]: e.target.value});
+	}
+
+	handleCheckBoxChange(e)
+	{
+		this.setState({[e.target.name]: e.target.checked ? true : false});
 	}
 
 	render()
@@ -117,10 +128,14 @@ class QuestionariosAdd extends BasePageForm
 					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.titulo' required="required" colsize="6" />
                     
-                    <InputInGroup type="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+                    <InputInGroup type="text" className="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.data' required="required" colsize="2" />
 				</FormRow>
 				
+				<FormRow>
+					<InputInGroup type="checkbox" name="principal" errors={ this.state.fieldErrors }  onChange={ this.handleCheckBoxChange }
+						label='page.questionario.fields.principal' required="required" colsize="2" />
+				</FormRow>
 				
 				<FormRow>
 					<ButtonSubmit text="layout.form.sign" onClick={ this.handleOnSubmit } />
@@ -139,6 +154,8 @@ class QuestionariosEdit extends BasePageForm
 		super(props);
 
 		this.handleResponse = this.handleResponse.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
 	}
 	static defaultProps = {
 		urlBase: 'questionario/edit',
@@ -151,7 +168,7 @@ class QuestionariosEdit extends BasePageForm
 			return;
 		}
 		let id = this.props.location.state.item_id;
-		Rest.view( "questionario/view/" + id, this.state).then(this.handleResponse);
+		Rest.get( "questionario/view/" + id, this.state).then(this.handleResponse);
 	}
 	
 	handleResponse(data) {
@@ -160,8 +177,17 @@ class QuestionariosEdit extends BasePageForm
 		));
 	}
 
+	handleChange(e) {
+		this.setState({[e.target.name]: e.target.value});
+	}
+
+	handleCheckBoxChange(e) {
+		this.setState({[e.target.name]: e.target.checked ? true : false});
+	}
+
 	async handleOnSubmit(e) {
-		Rest.edit(this.props.urlBase + "/" + this.state.id, this.state).then(this.handleReceiveResponseRest)
+		
+		Rest.put(this.props.urlBase + "/" + this.state.id, this.state).then(this.handleReceiveResponseRest)
 		console.log(this.state);
     }
 	render()
@@ -180,10 +206,14 @@ class QuestionariosEdit extends BasePageForm
 					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.titulo' required="required" colsize="6" value={ this.state.titulo || '' } />
                     
-                    <InputInGroup type="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+                    <InputInGroup type="text" className="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.data' required="required" colsize="2" value={ this.state.data || '' } />
 				</FormRow>
 				
+				<FormRow>
+					<InputInGroup type="checkbox" name="principal" errors={ this.state.fieldErrors }  onChange={ this.handleCheckBoxChange }
+						label='page.questionario.fields.principal' required="required" colsize="2" checked={ this.state.principal | false } />
+				</FormRow>
 				
 				<FormRow>
 					<ButtonSubmit text="layout.form.sign" onClick={ this.handleOnSubmit } />
@@ -224,7 +254,7 @@ class QuestionariosView extends BasePageForm
 			return;
 		}
 		let id = this.props.location.state.item_id;
-		Rest.view( "questionario/view/" + id, this.state).then(this.handleResponse);
+		Rest.get( "questionario/view/" + id, this.state).then(this.handleResponse);
 	}
 
 	handleResponse(data) {
@@ -264,7 +294,7 @@ class QuestionariosAddQuestion extends BasePageForm {
 	}
 	componentDidMount() {
 		if (this.props.history.location.state !== undefined)
-			Rest.view( "questionario/view/" + this.props.history.location.state.item_id, this.state).then(this.handleResponse);
+			Rest.get( "questionario/view/" + this.props.history.location.state.item_id, this.state).then(this.handleResponse);
 	}
 
 	handleResponse(res) {
@@ -318,7 +348,7 @@ class QuestionariosAddQuestion extends BasePageForm {
 
 	render()
 	{
-		let perguntas = "";
+		let perguntas = <tr></tr>;
 		let i = 0;
 		if (this.state.perguntas) {
 			perguntas = this.state.perguntas.map((fld) => {
@@ -343,7 +373,6 @@ class QuestionariosAddQuestion extends BasePageForm {
 					<FormRow>
 						<button onClick={this.handleAddBtn} className="btn btn-primary"><i className={ Icons.plus }></i></button>
 					</FormRow>
-					
 					<br/>
 					<table className="table">
 						<tbody>

@@ -1,5 +1,6 @@
 import decode from 'jwt-decode';
 import { Properties } from '../config';
+import axios from 'axios';
 
 class AuthService 
 {
@@ -45,7 +46,6 @@ class AuthService
 	loggedIn() 
 	{
 		const token = this.getToken();
-		
 		if (!!!token) {
 			return false;
 		}
@@ -58,32 +58,9 @@ class AuthService
 				this.logout();
 				return false;
 			}
-
-			this.refreshToken(rfToken);
 		}
 		
 		return true;
-	}
-
-/*----------------------------------------------------------------------------------------------------*/
-
-	refreshToken(refreshTokenId) 
-	{
-		return fetch(`${this.domain}/refresh`,
-			{
-				headers: {
-					'Authorization': 'Bearer ' + this.getRefreshToken()
-				},	
-				method: 'GET'
-			}
-		).then(res => 
-		{
-			res.json().then(json => 
-			{
-				this.setToken(json.access_token);
-				console.log("token refreshed");	
-			})
-		});
 	}
 
 /*----------------------------------------------------------------------------------------------------*/
@@ -102,6 +79,60 @@ class AuthService
 
 		} catch(err) {
 			return false;
+		}
+	}
+
+/*----------------------------------------------------------------------------------------------------*/	
+
+	doRequest(url, method, data, headers, responseType=null)
+	{
+		if (this.loggedIn())
+		{
+			const token = this.getToken();
+			
+			if (this.isTokenExpired(token))
+			{
+				let self = this;
+				return axios({
+					url: `${ this.domain }/refresh`,
+					method: 'GET',
+					headers: {
+						Authorization: self.getAuthorizationRefreshHeader(),
+						...headers
+					}
+				}).then(res => {
+
+					if (res.status === 200) 
+					{
+						console.log("token refreshed")
+						self.setToken(res.data.access_token);
+						
+						return axios({
+							url: `${ self.domain }/${url}`,
+							method: method,
+							responseType: responseType,
+							data: data,
+							headers: {
+								Authorization: self.getAuthorizationHeader(),
+								...headers
+							}
+						})
+					}
+				})
+			} 
+			else 
+			{
+				return axios({
+					url: `${ this.domain }/${url}`,
+					method: method,
+					data: data,
+					headers: {
+						Authorization: this.getAuthorizationHeader()
+					}
+				})
+			}
+		} else {
+			this.logout();
 		}
 	}
 
@@ -136,7 +167,7 @@ class AuthService
 		localStorage.removeItem('id_refresh_token');
 		localStorage.removeItem('user_profile_role');
 		localStorage.removeItem('user_profile_email');
-		localStorage.removeItem('user_profile_username');
+		localStorage.removeItem('user_profile_matricula');
 
 		window.location.replace("/");
 	}
@@ -155,7 +186,7 @@ class AuthService
 				res.json().then(json => {
 						localStorage.setItem('user_profile_role', json.role_id);
 						localStorage.setItem('user_profile_email', json.email);
-						localStorage.setItem('user_profile_username', json.username);
+						localStorage.setItem('user_profile_matricula', json.matricula);
 					}
 				)
 			}
@@ -190,6 +221,12 @@ class AuthService
 
 	getAuthorizationHeader() {
 		return 'Bearer ' + this.getToken();
+	}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+	getAuthorizationRefreshHeader() {
+		return 'Bearer ' + this.getRefreshToken();
 	}
 
 /*----------------------------------------------------------------------------------------------------*/

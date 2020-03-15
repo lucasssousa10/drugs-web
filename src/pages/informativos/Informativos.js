@@ -111,7 +111,7 @@ class InformativosEdit extends BasePageForm
 			return;
 		}
 		let id = this.props.location.state.item_id;
-		Rest.view( "informativo/view/" + id, this.state).then(this.handleResponse);
+		Rest.get( "informativo/view/" + id, this.state).then(this.handleResponse);
 	}
 	
 	handleChange(e) {
@@ -125,7 +125,7 @@ class InformativosEdit extends BasePageForm
 	}
 
 	async handleOnSubmit(e) {
-		Rest.edit(this.props.urlBase + "/" + this.state.id, this.state).then(this.handleReceiveResponseRest)
+		Rest.put(this.props.urlBase + "/" + this.state.id, this.state).then(this.handleReceiveResponseRest)
 		console.log(this.state);
     }
 	render()
@@ -140,6 +140,7 @@ class InformativosEdit extends BasePageForm
 							height: 1000,
 							buttonList: EditorButtonsList 
 						}}
+						setContents={this.state.conteudo}
 						onChange={this.handleChange} />
                 </FormRow>
 				<br/>
@@ -183,7 +184,7 @@ class InformativosView extends BasePageForm
 			return;
 		}
 		let id = this.props.location.state.item_id;
-		Rest.view( "informativo/view/" + id, this.state).then(this.handleResponse);
+		Rest.get( "informativo/view/" + id, this.state).then(this.handleResponse);
 	}
 
 	handleResponse(data) {

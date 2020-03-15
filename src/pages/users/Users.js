@@ -118,7 +118,7 @@ class UsersEdit extends BasePageForm
 			return;
 		}
 		let id = this.props.location.state.item_id;
-		Rest.view( "user/view/" + id, this.state).then(this.handleResponse);
+		Rest.get( "user/view/" + id, this.state).then(this.handleResponse);
 	}
 	
 	handleResponse(data) {
@@ -128,7 +128,7 @@ class UsersEdit extends BasePageForm
 	}
 
 	async handleOnSubmit(e) {
-		Rest.edit(this.props.urlBase + "/" + this.state.id, this.state).then(this.handleReceiveResponseRest)
+		Rest.put(this.props.urlBase + "/" + this.state.id, this.state).then(this.handleReceiveResponseRest)
 		console.log(this.state);
     }
 	render()
@@ -205,7 +205,7 @@ class UsersView extends BasePageForm
 			return;
 		}
 		let id = this.props.location.state.item_id;
-		Rest.view( "user/view/" + id, this.state).then(this.handleResponse);
+		Rest.get( "user/view/" + id, this.state).then(this.handleResponse);
 	}
 
 	handleResponse(data) {

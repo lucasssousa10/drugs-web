@@ -13,107 +13,32 @@ class RestService {
 /*----------------------------------------------------------------------------------------------------*/
 
 	get(urlBase, parameters) {
-		if (!this.Auth.loggedIn()) {
-			this.props.history.replace('/');
-		}
-		
-		const url = `${ Properties.domain }/${ urlBase }`;
-		const token = this.Auth.getAuthorizationHeader();
-
-		return axios({
-			method: 'GET',
-			params: parameters,
-			url: url,
-			headers: {
-				Authorization: token
-			}
-		});
+		return this.Auth.doRequest(urlBase, 'GET', parameters, {}, null);		
 	}
 
 /*----------------------------------------------------------------------------------------------------*/
 
 	post(urlBase, parameters) {
-		if (!this.Auth.loggedIn()) {
-			this.props.history.replace('/');
-		}
-		
-		const url = `${ Properties.domain }/${ urlBase }`;
-		const token = this.Auth.getAuthorizationHeader();
-
-		return axios({
-			method: 'POST',
-			data: parameters,
-			url: url,
-			headers: {
-				Authorization: token
-			}
-		});
+		return this.Auth.doRequest(urlBase, 'POST', parameters, {}, null);
 	}
 
 /*----------------------------------------------------------------------------------------------------*/
 
 	delete(urlBase, parameters) {
-		if (!this.Auth.loggedIn()) {
-			this.props.history.replace('/');
-		}
-
-		const url = `${Properties.domain}/${urlBase}`;
-		const token = this.Auth.getAuthorizationHeader();
-
-		return axios({
-			method: 'DELETE',
-			data: parameters,
-			url: url,
-			headers: {
-				Authorization: token
-			}
-		});
+		return this.Auth.doRequest(urlBase, 'DELETE', parameters, {}, null);
 	}
 
 	/* ----------------------------------------------------------------------------------------------------*/
 
-	edit(urlBase, parameters) {
-		if (!this.Auth.loggedIn()) {
-			this.props.history.replace('/');
-		}
-
-		const url = `${Properties.domain}/${urlBase}`;
-		const token = this.Auth.getAuthorizationHeader();
-
-		return axios({
-			method: 'PUT',
-			data: parameters,
-			url: url,
-			headers: {
-				Authorization: token
-			}
-		});
-	}
-
-	/* ----------------------------------------------------------------------------------------------------*/
-
-	view(urlBase, parameters) {
-		if (!this.Auth.loggedIn()) {
-			this.props.history.replace('/');
-		}
-
-		const url = `${Properties.domain}/${urlBase}`;
-		const token = this.Auth.getAuthorizationHeader();
-
-		return axios({
-			method: 'GET',
-			data: parameters,
-			url: url,
-			headers: {
-				Authorization: token
-			}
-		});
+	put(urlBase, parameters) {
+		return this.Auth.doRequest(urlBase, 'PUT', parameters, {}, null);		
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
 
 	get2(urlBase, parameters) {
 
+		// TODO: acabar com essa função e usar o get
 		const url = `${ Properties.domain }/${ urlBase }`;
 
 		return axios({
@@ -126,46 +51,35 @@ class RestService {
 		});
 	}
 
-/*----------------------------------------------------------------------------------------------------*/
+	/*----------------------------------------------------------------------------------------------------*/
 
 	post2(urlBase, parameters) {
 
+		// TODO: acabar com essa função e usar o post
 		const url = `${ Properties.domain }/${ urlBase }`;
 
 		return axios({
 			method: 'POST',
 			data: parameters,
 			url: url,
-			headers: {
-
-			}
+			headers: {}
 		});
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 
 	postFile(urlBase, parameters) {
-		if (!this.Auth.loggedIn()) {
-			this.props.history.replace('/');
-		}
+		return this.Auth.doRequest(urlBase, 'POST', parameters, {}, 'blob');
+	}
 
-		const url = `${Properties.domain}/${urlBase}`;
-		const token = this.Auth.getAuthorizationHeader();
+	/*----------------------------------------------------------------------------------------------------*/
 
-		return axios({
-			method: 'POST',
-			data: parameters,
-			url: url,
-			responseType: 'blob',
-			headers: {
-				Authorization: token
-			}
-		});
+	getFile(urlBase, parameters) {
+		return this.Auth.doRequest(urlBase, 'GET', parameters, {}, 'blob');
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
 
 }
-
-
 
 export default RestService;

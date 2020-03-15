@@ -733,10 +733,9 @@ class BasicViewWithDetails extends Component {
 			);
 		});
 		
-		i = 1;
 		let data_details = this.props.data_details ? this.props.data_details.map((row) => {
 			return (
-				<tr key={i++}>
+				<tr key={'detail-' + i++}>
 					<td>{row.id}</td>
 					<td>{row.descricao}</td>
 				</tr>
@@ -745,7 +744,7 @@ class BasicViewWithDetails extends Component {
 
 		let data_labels = this.props.labels_details ? this.props.labels_details.map((col) => {
 			return (
-				<th>{Messages.getMessage(col)}</th>
+				<th key={'col' + i++}>{Messages.getMessage(col)}</th>
 			);
 		}) : '';
 
