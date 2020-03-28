@@ -3,7 +3,7 @@ import BasePageList from '../basePage/BasePageList';
 import BasePageForm from '../basePage/BasePageForm';
 import MessageService from '../../services/MessageService';
 import {TableData, FormPage, FormRow, BasicViewWithDetails} from '../../components/template/Layout';
-import { ButtonSubmit, ButtonCancel, InputInGroup } from '../../components/template/Form';
+import { ButtonSubmit, ButtonCancel, InputInGroup, TextField } from '../../components/template/Form';
 import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
 import { Icons } from '../../iconSet';
@@ -127,14 +127,18 @@ class QuestionariosAdd extends BasePageForm
                 <FormRow>
 					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.titulo' required="required" colsize="6" />
-                    
                     <InputInGroup type="text" class="date" name="data" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.questionario.fields.data' required="required" colsize="2" />
 				</FormRow>
 				
 				<FormRow>
+					<TextField name="descricao" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.questionario.fields.descricao' required="required" colsize="8" rowsize="5"/>
+				</FormRow>
+
+				<FormRow>
 					<InputInGroup type="checkbox" name="principal" errors={ this.state.fieldErrors }  onChange={ this.handleCheckBoxChange }
-						label='page.questionario.fields.principal' required="required" colsize="2" />
+						label='page.questionario.fields.principal' required="required" colsize="1" />
 				</FormRow>
 				
 				<FormRow>
@@ -211,8 +215,13 @@ class QuestionariosEdit extends BasePageForm
 				</FormRow>
 				
 				<FormRow>
+					<TextField name="descricao" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
+						label='page.questionario.fields.descricao' required="required" colsize="8" rowsize="5" value={ this.state.descricao || "" }/>
+				</FormRow>
+
+				<FormRow>
 					<InputInGroup type="checkbox" name="principal" errors={ this.state.fieldErrors }  onChange={ this.handleCheckBoxChange }
-						label='page.questionario.fields.principal' required="required" colsize="2" checked={ this.state.principal | false } />
+						label='page.questionario.fields.principal' required="required" colsize="1" checked={ this.state.principal | false } />
 				</FormRow>
 				
 				<FormRow>
@@ -268,7 +277,8 @@ class QuestionariosView extends BasePageForm
 			{label:"Id: ", value:this.state.id},
 			{label:"Título: ", value:this.state.titulo},
 			{label:"Criador: ", value:this.state.criador},
-			{label:"Data: ", value:this.state.data}
+			{label:"Data: ", value:this.state.data},
+			{label:"Descrição: ", value:this.state.descricao},
 		]
 		let details_labels = ["page.pergunta.fields.id", "page.pergunta.fields.pergunta"];
 		return (

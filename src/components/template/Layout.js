@@ -748,7 +748,9 @@ class BasicViewWithDetails extends Component {
 			);
 		}) : '';
 
-		return (<div className="card">
+		return (
+		<Fragment>
+		<div className="card">
 			{this.props.removeButtons ? '' :
 				<div className="card-header">
 
@@ -782,25 +784,30 @@ class BasicViewWithDetails extends Component {
 					{this.props.button_add}
 					{this.props.button_cancel}
 				</div>
-				{ data_details !== "" &&
-					<Fragment>
-						<div className="row">
-							<h3>{this.props.title_details}</h3>
-						</div>
-						<table className="table">
-							<thead>
-								<tr>
-								{ data_labels }
-								</tr>
-							</thead>
-							<tbody>
-								{ data_details }
-							</tbody>
-						</table>
-					</Fragment>
-				}
 			</div>
-		</div>);
+		</div>
+		{ data_details !== "" &&
+		<Fragment>
+			<br/>
+			<div className="card">
+				<div className="card-header"><b>{this.props.title_details}</b></div>
+				<div className="card-body">
+				<table className="table">
+					<thead>
+						<tr>
+						{ data_labels }
+						</tr>
+					</thead>
+					<tbody>
+						{ data_details }
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</Fragment>
+		}
+		</Fragment>
+		);
 	}
 }
 

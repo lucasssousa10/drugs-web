@@ -152,7 +152,8 @@ export const Messages = {
 				"criador": "Criador",
 				"data": "Data",
 				"titulo": "Título",
-				"principal": "Ativo"
+				"principal": "Ativo",
+				"descricao": "Descrição"
 			},
 			"add": {
 				"title": "Adicionar questionário"
