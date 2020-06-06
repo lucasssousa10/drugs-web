@@ -125,7 +125,8 @@ export const Messages = {
 			"fields": {
 				"id": "#",
 				"data": "Data",
-				"descricao": "Descrição"
+				"descricao": "Descrição",
+				"titulo": "Título",
 			},
 			"add": {
 				"title": "Adicionar informativos"
@@ -141,7 +142,8 @@ export const Messages = {
 			"fields": {
 				"id": "#",
 				"data": "Data",
-				"descricao": "Descrição"
+				"descricao": "Descrição",
+				"titulo": "Título",
 			},
 			"add": {
 				"title": "Adicionar atividades"

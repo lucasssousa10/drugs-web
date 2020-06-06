@@ -44,14 +44,14 @@ class Home extends BasePage {
 		const atividades_rows = this.state.atividades.map(item => 
 			<tr key={i++}>
 				<th scope="row">{ item.id }</th>
-				<td>{ item.data }</td>
+				<td>{ item.titulo }</td>
 			</tr>
 		);
 
 		const informativos_rows = this.state.informativos.map(item => 
 			<tr key={i++}>
 				<th scope="row">{ item.id }</th>
-				<td>{ item.data }</td>
+				<td>{ item.titulo }</td>
 			</tr>
 		);
 		
@@ -67,7 +67,7 @@ class Home extends BasePage {
 					<div className="col-md-4">
 						<div className="card">
 							<div className="card-body">
-								<p className="card-text primary-text text-justify" >Follow Life é uma ferramenta para ...</p>
+								<p className="card-text primary-text text-justify" >Follow Life é uma ferramenta para auxiliar na prevenção do uso de drogas por adolescentes. Nela os adolescentes terão conhecimentos para pensar um pouco mais sobre drogas, poderão tirar dúvidas sobre esse assunto, receberão dicas e informações que irão subsidiar na tomada de decisões, favorecendo a realização de escolhas conscientes para as suas vidas.</p>
 							</div>
 						</div>
 					</div>
@@ -80,7 +80,7 @@ class Home extends BasePage {
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Data</th>
+										<th scope="col">Título</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -99,7 +99,7 @@ class Home extends BasePage {
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Data</th>
+										<th scope="col">Título</th>
 									</tr>
 								</thead>
 								<tbody>

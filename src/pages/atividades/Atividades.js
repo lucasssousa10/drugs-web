@@ -3,7 +3,7 @@ import BasePageList from '../basePage/BasePageList';
 import BasePageForm from '../basePage/BasePageForm';
 import MessageService from '../../services/MessageService';
 import {TableData, FormPage, FormRow, Filter, HtmlContentView} from '../../components/template/Layout';
-import { ButtonSubmit, ButtonCancel} from '../../components/template/Form';
+import { ButtonSubmit, ButtonCancel, InputInGroup} from '../../components/template/Form';
 import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
 
@@ -25,6 +25,11 @@ class AtividadesList extends BasePageList
 				label: 'page.atividade.fields.id',
 				field: "id",
 				width: "10%"
+			},
+			{
+				label: 'page.atividade.fields.titulo',
+				field: "titulo",
+				width: "30%"
 			},
 			{
 				label: 'page.atividade.fields.data',
@@ -60,7 +65,8 @@ class AtividadesAdd extends BasePageForm
 
 	constructor(props) {
 		super(props);
-        this.handleChange = this.handleChange.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.handleChangeTitle = this.handleChangeTitle.bind(this);
 	}
 
     handleChange(e)
@@ -68,11 +74,20 @@ class AtividadesAdd extends BasePageForm
         this.setState({"conteudo": e})
 	}
 
+	handleChangeTitle(e)
+	{
+		this.setState({[e.target.name]: e.target.value});
+	}
+
 	render()
 	{
         
 		return (
 			<FormPage title="page.atividade.add.title">
+				<FormRow>
+					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChangeTitle }
+						label='page.atividade.fields.titulo' required="required" colsize="6" />
+				</FormRow>
 				<FormRow>
 					<SunEditor setOptions={{
 							height: 1000,
@@ -101,6 +116,7 @@ class AtividadesEdit extends BasePageForm
 
 		this.handleResponse = this.handleResponse.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleChangeTitle = this.handleChangeTitle.bind(this);
 	}
 	static defaultProps = {
 		urlBase: 'atividade/edit',
@@ -120,6 +136,11 @@ class AtividadesEdit extends BasePageForm
 		this.setState({"conteudo": e})
 	}
 
+	handleChangeTitle(e)
+	{
+		this.setState({[e.target.name]: e.target.value});
+	}
+
 	handleResponse(data) {
 		this.setState((
 			data.data
@@ -137,6 +158,10 @@ class AtividadesEdit extends BasePageForm
 			this.state.error ?
 			( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
 			<FormPage title="page.atividade.edit.title">
+				<FormRow>
+					<InputInGroup type="text" name="titulo" errors={ this.state.fieldErrors }  onChange={ this.handleChangeTitle }
+						label='page.atividade.fields.titulo' required="required" colsize="6" value={ this.state.titulo || '' } />
+				</FormRow>
 				<FormRow>
 					<SunEditor setOptions={{
 							height: 1000,
@@ -199,7 +224,7 @@ class AtividadesView extends BasePageForm
 		return (
 			this.state.error ?
 				( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
-				(<HtmlContentView title={"Atividade " + this.state.data} content={this.state.conteudo}/>)
+				(<HtmlContentView title={"Atividade " + this.state.titulo} content={this.state.conteudo}/>)
 		);
 	}
 }
