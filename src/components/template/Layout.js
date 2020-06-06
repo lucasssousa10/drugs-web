@@ -86,6 +86,34 @@ class AlertDangerForm extends Component {
 
 /*----------------------------------------------------------------------------------------------------*/
 
+class CardBordered extends Component
+{
+    static defaultProps = {
+        type: "primary",
+        icon: "document",
+    }
+
+    render()
+    {
+        return (
+            <div className="col-xl-3 col-md-6 mb-4">
+                <div className={ "card border-left-" + this.props.type + " shadow h-100 py-2" }>
+                    <div className="card-body">
+                        <div className="row no-gutters align-items-center">
+                            <div className="col mr-2">
+                                <div className={"text-xs font-weight-bold text-uppercase mb-1"}>{ Messages.getMessage(this.props.label) }</div>
+                                <div className="h5 mb-0 font-weight-bold text-gray">{ this.props.value }</div>
+                            </div>
+                            <div className="col-auto">
+                                <i className={ Icons[this.props.icon] + " fa-2x text-gray-300" }></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
 
 /*----------------------------------------------------------------------------------------------------*/
 
@@ -968,5 +996,5 @@ class Modal extends Component {
 
 export { CenterCard, AlertDangerForm, NavBar, SideBar, SideBarItem, SideBarDropDown, SideBarDropDownItem,
 		 SideBarDropDownGroup, SideBarDropDownDivider, Footer, ScrollToTop, TableData, TableData2, CenterCard2, FormPage,
-		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView, BasicViewWithDetails};
+		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView, BasicViewWithDetails, CardBordered};
 

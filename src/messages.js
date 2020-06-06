@@ -22,6 +22,13 @@ export const Messages = {
 				"something": "Alguma coisa"
 			}
 		},
+		"dashboard": {
+			"questions": "Questionários",
+			"answers": 'Respostas',
+			"users": "Usuários",
+			"info": "Informativos",
+			"tasks": "Atividades",
+		},
 		"form": {
 		    "login": "Logar",
 			"save": "Salvar",

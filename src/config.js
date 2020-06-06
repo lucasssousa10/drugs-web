@@ -2,22 +2,22 @@ const config = {
 	'developer': {
  		'domain': 'http://localhost:5000',
 		'appName': "FollowLife",
-		'version': "0.0.0.1",
-		'company': "IFCE",
+		'version': "1.0",
+		'company': "IFCE/UFRN",
 		'year': "2020"
 	},
 	'production': {
 		'domain': 'http://localhost:5000',
 		'appName': "FollowLife",
-		'version': "0.0.0.1",
-		'company': "IFCE",
+		'version': "1.0",
+		'company': "IFCE/UFRN",
 		'year': "2020"
 	},
 	'heroku': {
 		'domain': 'https://drugs-backend.herokuapp.com',
 		'appName': "FollowLife",
-		'version': "0.0.0.1",
-		'company': "IFCE",
+		'version': "1.0",
+		'company': "IFCE/UFRN",
 		'year': "2020"
 	}
 }
