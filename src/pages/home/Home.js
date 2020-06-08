@@ -2,6 +2,7 @@ import React from 'react';
 import BasePage from '../basePage/BasePage';
 import RestService from '../../services/RestService';
 import { CardBordered } from '../../components/template/Layout';
+import './Home.css';
 
 const Rest = new RestService();
 
@@ -43,14 +44,14 @@ class Home extends BasePage {
 		let i = 0;
 		const atividades_rows = this.state.atividades.map(item => 
 			<tr key={i++}>
-				<th scope="row">{ item.id }</th>
+				<th scope="row" className="col-id">{ item.id }</th>
 				<td>{ item.titulo }</td>
 			</tr>
 		);
 
 		const informativos_rows = this.state.informativos.map(item => 
 			<tr key={i++}>
-				<th scope="row">{ item.id }</th>
+				<th scope="row" className="col-id">{ item.id }</th>
 				<td>{ item.titulo }</td>
 			</tr>
 		);
@@ -65,7 +66,7 @@ class Home extends BasePage {
 				</div>
 				<div className="row">
 					<div className="col-md-4">
-						<div className="card">
+						<div className="card card-base">
 							<div className="card-body">
 								<p className="card-text primary-text text-justify" >Follow Life é uma ferramenta para auxiliar na prevenção do uso de drogas por adolescentes. Nela os adolescentes terão conhecimentos para pensar um pouco mais sobre drogas, poderão tirar dúvidas sobre esse assunto, receberão dicas e informações que irão subsidiar na tomada de decisões, favorecendo a realização de escolhas conscientes para as suas vidas.</p>
 							</div>
@@ -73,13 +74,13 @@ class Home extends BasePage {
 					</div>
 					
 					<div className="col-md-4">
-						<div className="card">
+						<div className="card card-base">
 							<div className="card-header">Atividades Recentes</div>
 							<div className="card-body">
 							<table className="table table-bordered">
 								<thead>
 									<tr>
-										<th scope="col">#</th>
+										<th scope="col col-id">#</th>
 										<th scope="col">Título</th>
 									</tr>
 								</thead>
@@ -92,13 +93,13 @@ class Home extends BasePage {
 					</div>
 
 					<div className="col-md-4">
-						<div className="card">
+						<div className="card card-base">
 							<div className="card-header">Informativos Recentes</div>
 							<div className="card-body">
 							<table className="table table-bordered">
 								<thead>
 									<tr>
-										<th scope="col">#</th>
+										<th scope="col col-id">#</th>
 										<th scope="col">Título</th>
 									</tr>
 								</thead>

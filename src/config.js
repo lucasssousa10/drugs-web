@@ -1,21 +1,21 @@
 const config = {
 	'developer': {
  		'domain': 'http://localhost:5000',
-		'appName': "FollowLife",
+		'appName': "Follow Life",
 		'version': "1.0",
 		'company': "IFCE/UFRN",
 		'year': "2020"
 	},
 	'production': {
 		'domain': 'http://localhost:5000',
-		'appName': "FollowLife",
+		'appName': "Follow Life",
 		'version': "1.0",
 		'company': "IFCE/UFRN",
 		'year': "2020"
 	},
 	'heroku': {
 		'domain': 'https://drugs-backend.herokuapp.com',
-		'appName': "FollowLife",
+		'appName': "Follow Life",
 		'version': "1.0",
 		'company': "IFCE/UFRN",
 		'year': "2020"

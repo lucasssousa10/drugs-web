@@ -27,6 +27,7 @@ export const Icons = {
 	"encaminhamento": "fas fa-download",
 	"atividades": "fas fa-tasks",
 	"questionario": "fas fa-question",
-	"question": "fas fa-question"
+	"question": "fas fa-question",
+	"sair": "fa fa-sign-out"
 };
 

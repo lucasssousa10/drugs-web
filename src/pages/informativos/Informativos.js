@@ -89,7 +89,8 @@ class InformativosAdd extends BasePageForm
 				<FormRow>
 					<SunEditor setOptions={{
 							height: 1000,
-							buttonList: EditorButtonsList
+							buttonList: EditorButtonsList,
+							videoWidth : '80%',
 						}} 
 						onChange={this.handleChange}/>
                 </FormRow>
@@ -163,7 +164,8 @@ class InformativosEdit extends BasePageForm
 				<FormRow>
 					<SunEditor setOptions={{
 							height: 1000,
-							buttonList: EditorButtonsList 
+							buttonList: EditorButtonsList,
+							videoWidth : '80%',
 						}}
 						setContents={this.state.conteudo}
 						onChange={this.handleChange} />

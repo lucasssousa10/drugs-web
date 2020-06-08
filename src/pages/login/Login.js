@@ -5,6 +5,8 @@ import { InputInGroup, RememberMeInGroup, ButtonSubmit } from '../../components/
 import { AlertifySuccess } from '../../services/AlertifyService';
 import MessageService from '../../services/MessageService';
 import alertify from 'alertifyjs';
+import logo from '../../img/logo.png';
+import './Login.css';
 
 const Message = new MessageService();
 
@@ -28,16 +30,17 @@ class Login extends Component
 		return (
 			<CenterCard title='page.user.login.title'>
 				<form onSubmit={ this.handleSubmit }>
+					<img src={ logo } className="login-logo" />
+					<h3 className="follow-logo">Follow Life</h3>
+					<hr />
 					<InputInGroup type="text" name="matricula" errors={ this.state.fieldErrors }  onChange={ this.handleChange }
 						label='page.user.login.matricula' required="required" autofocus="autofocus"/>
 					<InputInGroup type="password" name="password" errors={ this.state.fieldErrors} onChange={ this.handleChange }
 						label='page.user.login.password' required="required" />
-					<RememberMeInGroup text='page.user.login.remember' />
-					<FormRow>
+					<hr />
 					    <div className="col-12 mb-2">
 					        <ButtonSubmit type="submit" className="btn-block" text='page.user.login.submit' />
 					    </div>
-					</FormRow>
 				</form>
 			</CenterCard>
 		);
