@@ -30,7 +30,7 @@ const LightTooltip = withStyles(theme => ({
 		color: 'rgba(0, 0, 0, 0.87)',
 		maxWidth: 220,
 		fontSize: theme.typography.pxToRem(12),
-		border: '1px solid #dadde9',
+		border: 'none',
 	},
 }))(Tooltip);
 
@@ -467,22 +467,18 @@ class TableData extends Component
 			let registerFields = this.props.fields.map((fld) =>
 				<td style={ {'width': fld.width} } key={ key++ }>{ register[fld.field] }</td>
 			);
-			let registerActions = <div/>;
+			let registerActions = "";
 			if (this.props.actions) {
 				registerActions =
-					<td className="action-col" key={ key++ } style={{width:"100%", height: "100%"}}>{
+					<td className="action-col" key={ key++ }>{
 						this.props.actions.map((act) =>
 							<LightTooltip key={ key++ } title={Hints[act.field]} placement={"top"} arrow>
 								{act.field === "delete" ?
 									<Modal key={key++} act={act} register={register} onChangeRemember={this.onChangeRemember} remember={this.state.remember} dontRemember={() => this.setState(({remember:false}))}/>
-
 									:
-									<div style={{width:"98%"}}>
-										<button key={ key++ } className="w-33 btn btn-secondary btn-action" style={ {width: "100%", background:ButtonColors[act.field]}} onClick={ (evt) => act.handle(evt, register.id) }><i className={ Icons[act.field] }/></button>
-
-									</div>
+										<button key={ key++ } className="w-33 btn btn-secondary btn-action" style={ {background:ButtonColors[act.field]}} onClick={ (evt) => act.handle(evt, register.id) }><i className={ Icons[act.field] }/></button>
 									}
-								</LightTooltip>
+							</LightTooltip>
 								)}
 					</td>;
 			}
@@ -505,7 +501,7 @@ class TableData extends Component
 		let labelActions;
 
 		if (this.props.actions && this.props.actions.length > 0) {
-			labelActions = <th className="w-5 actions-label" style={ {width: "5%"} } colSpan={ this.props.actions.length }>{ Messages.getMessage('action.title') }</th>;
+			labelActions = <th class="action-col">{ Messages.getMessage('action.title') }</th>;
 		}
 
 		let footerPageInfo = "";
@@ -519,7 +515,7 @@ class TableData extends Component
 
 		let card = <div className="card-body">
 			<div className="table-responsive">
-				<table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+				<table className="table" id="dataTable" width="100%" cellSpacing="0">
 					<thead>
 					<tr>
 						{ labels }
@@ -845,7 +841,6 @@ class BasicViewWithDetails2 extends Component {
 	}
 
 	handleLoadAnswersResponse(res) {
-		debugger
 		this.setState({detail: res.data})
 	}
 
@@ -1109,9 +1104,9 @@ class Modal extends Component {
 
 	render() {
 		return (
-			<div style={{width: "100%"}}>
+			<Fragment>
                 <LightTooltip key={ 213876253 } title={Hints[this.props.act.field]} placement={"top"} arrow>
-			<button key={ this.props.key } className={"w-33 btn btn-secondary btn-action"} style={ {width: "100%", background:ButtonColors[this.props.act.field]}} onClick={this.handleClickOpen}><i className={ Icons[this.props.act.field] }/>
+			<button key={ this.props.key } className={"w-33 btn btn-secondary btn-action"} style={ {background:ButtonColors[this.props.act.field]}} onClick={this.handleClickOpen}><i className={ Icons[this.props.act.field] }/>
 			</button>
                 </LightTooltip>
 			<Dialog
@@ -1135,7 +1130,7 @@ class Modal extends Component {
 				</DialogActions>
 				
 			</Dialog>
-			</div>
+			</Fragment>
 		)
 	}
 }

@@ -77,7 +77,7 @@ class Home extends BasePage {
 						<div className="card card-base">
 							<div className="card-header">Atividades Recentes</div>
 							<div className="card-body">
-							<table className="table table-bordered">
+							<table className="table">
 								<thead>
 									<tr>
 										<th scope="col col-id">#</th>
@@ -96,7 +96,7 @@ class Home extends BasePage {
 						<div className="card card-base">
 							<div className="card-header">Informativos Recentes</div>
 							<div className="card-body">
-							<table className="table table-bordered">
+							<table className="table">
 								<thead>
 									<tr>
 										<th scope="col col-id">#</th>

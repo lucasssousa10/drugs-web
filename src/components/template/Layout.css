@@ -14,18 +14,24 @@
 	margin-right: 3px;
 }
 
-.actions-label {
-	text-align: center;
+th.action-col {
+  width: 10%;
+  text-align: center;
 }
 
-.action-col {
-	display: inline-flex;
-    padding: 3px 3px 3px 3px !important; 
+td.action-col {
+  width: 10%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
 }
 
 .btn-action {
-	width: 40px;
-	margin-right: 1px;
+	width: 50px;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 	text-align: center;
 }
 .dynamic{
