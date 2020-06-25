@@ -39,7 +39,7 @@ class AuthService
 				} else {
 					res.error = true;
 					res.errors = {
-						form: [{message: "O acesso ao módulo WEB só é permitido a administradores."}],
+						form: [{message: "O acesso ao módulo WEB só é permitido aos administradores."}],
 						fields: {}
 					}
 				}
@@ -176,6 +176,7 @@ class AuthService
 		localStorage.removeItem('user_profile_role');
 		localStorage.removeItem('user_profile_email');
 		localStorage.removeItem('user_profile_matricula');
+		localStorage.removeItem('user_profile_nome');
 
 		window.location.replace("/");
 	}
@@ -195,6 +196,7 @@ class AuthService
 						localStorage.setItem('user_profile_role', json.role_id);
 						localStorage.setItem('user_profile_email', json.email);
 						localStorage.setItem('user_profile_matricula', json.matricula);
+						localStorage.setItem('user_profile_nome', json.nome);
 					}
 				)
 			}

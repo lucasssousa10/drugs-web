@@ -195,6 +195,21 @@ class SideBarDropDownDivider extends Component {
 /*----------------------------------------------------------------------------------------------------*/
 
 class NavBar extends Component {
+
+	constructor(props)
+	{
+		super(props);
+		
+		this.state = {
+			"username": ""
+		}
+	}
+
+	componentDidMount()
+	{
+		this.setState({username: localStorage.getItem('user_profile_nome')});
+	}
+
 	handleLogoutClick() {
 		Auth.logout();
 	}
@@ -230,11 +245,12 @@ class NavBar extends Component {
 				<ul className="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
 					
 					<li className="nav-item dropdown no-arrow">
-					
+						<div class="d-inline-flex">
+						<span id="username-navbar">{ this.state.username }</span>
 						<Link className="nav-link dropdown-toggle" to="#" onClick={this.handleLogoutClick} role="button" aria-haspopup="true" aria-expanded="false">
 							<i className="fa fa-sign-out-alt" />
 						</Link>
-						
+						</div>
 					</li>
 				</ul>
 			</nav>
