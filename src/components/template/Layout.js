@@ -958,6 +958,7 @@ class BasicViewWithDetails2 extends Component {
 				</table>
 				</div>
 			</div>
+			<br />
 		</Fragment>
 		}
 
