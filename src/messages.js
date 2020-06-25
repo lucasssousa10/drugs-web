@@ -86,7 +86,8 @@ export const Messages = {
 		"view": "Visualizar",
 		"contrato" : "Criar contrato",
 		"download": "Download",
-		"addquestion": "Adicionar Perguntas"
+		"addquestion": "Adicionar perguntas",
+		"answers": "Mostrar respostas"
 	},
 	"page": {
 		"user": {
@@ -188,6 +189,15 @@ export const Messages = {
 			"edit": {
 				"title": "Editar pergunta"
 			}
+		},
+		"resposta": {
+			"fields": {
+				"id": "#",
+				"data": "Data",
+				"register": "Matrícula",
+				"name": "Nome",
+			},
+			"title": "Respostas"
 		}
 	},
 	"fields": {

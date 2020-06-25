@@ -34,6 +34,7 @@
   "scripts": {
     "start": "node server.js",
     "start-prod": "NODE_ENV=production react-scripts start",
+    "start-dev": "NODE_ENV=developer react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts start",
     "eject": "react-scripts eject"

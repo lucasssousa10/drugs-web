@@ -18,7 +18,7 @@ export const Icons = {
 	"download": "fas fa-download",
 	"loadspin": "fas fa-download",
 	"loading": "fas fa-circle-notch fa-spin",
-	"regras": "fas fa-table",
+	"answer": "fas fa-table",
 	"modulo": "fas fa-download",
 	"contato": "fas fa-phone",
 	"financeiro": "fas fa-download",

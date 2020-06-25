@@ -24,8 +24,8 @@ const config = {
 
 let environment = 'developer';
 require('dotenv').config();
-if(process.env.REACT_APP_NODE_ENV !==  undefined){
-	environment = process.env.REACT_APP_NODE_ENV ;
+if(process.env.REACT_APP_NODE_ENV !==  undefined) {
+	environment = process.env.REACT_APP_NODE_ENV;
 }
 
 console.log("Starting environment " + environment)

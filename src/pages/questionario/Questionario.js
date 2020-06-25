@@ -2,7 +2,7 @@ import React from 'react';
 import BasePageList from '../basePage/BasePageList';
 import BasePageForm from '../basePage/BasePageForm';
 import MessageService from '../../services/MessageService';
-import {TableData, FormPage, FormRow, BasicViewWithDetails} from '../../components/template/Layout';
+import {TableData, FormPage, FormRow, BasicViewWithDetails, BasicViewWithDetails2} from '../../components/template/Layout';
 import { ButtonSubmit, ButtonCancel, InputInGroup, TextField } from '../../components/template/Form';
 import {Redirect} from "react-router-dom";
 import RestService from "../../services/RestService";
@@ -48,10 +48,19 @@ class QuestionariosList extends BasePageList {
 	constructor(props) {
 		super(props);
 		this.actionAddQuestion = this.actionAddQuestion.bind(this);
+		this.actionShowAnswers = this.actionShowAnswers.bind(this);
 	}
 
 	actionAddQuestion(event, id) {
 		let url = "/" + this.props.urlBase.split("/")[0] + "/addquestion";
+		this.props.history.push({
+			pathname: url,
+			state: {item_id: id}
+		});
+	}
+
+	actionShowAnswers(event, id) {
+		let url = "/" + this.props.urlBase.split("/")[0] + "/answers";
 		this.props.history.push({
 			pathname: url,
 			state: {item_id: id}
@@ -68,6 +77,12 @@ class QuestionariosList extends BasePageList {
 				label: 'action.addquestion',
 				field: "question",
 				handle: this.actionAddQuestion
+			})
+
+			actions = actions.concat({
+				label: 'action.answers',
+				field: "answer",
+				handle: this.actionShowAnswers
 			})
 		}
 	
@@ -291,6 +306,68 @@ class QuestionariosView extends BasePageForm
 
 /*----------------------------------------------------------------------------------------------------*/
 
+class QuestionariosAnswers extends BasePageForm
+{
+	constructor(props) {
+		super(props);
+
+		this.handleResponse = this.handleResponse.bind(this);
+		this.onClickEdit = this.onClickEdit.bind(this);
+	}
+	onClickEdit(event) {
+		console.log(event.target);
+		let url = "edit";
+		let id = this.state.id;
+		this.props.history.push({
+			pathname: url,
+			state: {item_id: id}
+		});
+	}
+	static defaultProps = {
+		urlBase: 'questionario/view',
+		title: Messages.getMessage('menu.questionario.title')
+	};
+
+	componentDidMount() {
+		if (this.props.location.state === undefined){
+			this.setState(({error:true}));
+			return;
+		}
+		let id = this.props.location.state.item_id;
+		Rest.get( "questionario/view/" + id, this.state).then(this.handleResponse);
+	}
+
+	handleResponse(data) {
+		this.setState((
+			data.data
+		));
+	}
+	render()
+	{
+		let fields = [
+			{label:"Id: ", value:this.state.id},
+			{label:"Título: ", value:this.state.titulo},
+			{label:"Criador: ", value:this.state.criador},
+			{label:"Data: ", value:this.state.data},
+			{label:"Descrição: ", value:this.state.descricao},
+		]
+
+		let details_labels = [
+			"page.resposta.fields.name",
+			"page.resposta.fields.register",
+			"page.resposta.fields.data", 
+		];
+
+		return (
+			this.state.error ?
+				( <Redirect to={{ pathname: "/login", state: { from: this.props.location } }}/> ) :
+				(<BasicViewWithDetails2 labels_details={details_labels} title={this.state.titulo} title_details={Messages.getMessage("page.resposta.title")} data_details={this.state.respostas} url={"#questionario/edit?id=" + this.state.id} fields={fields} onClickEdit={this.onClickEdit}/>)
+		);
+	}
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
 class QuestionariosAddQuestion extends BasePageForm {
 	
 	constructor(props) {
@@ -396,4 +473,4 @@ class QuestionariosAddQuestion extends BasePageForm {
 }
 
 
-export {QuestionariosList, QuestionariosAdd, QuestionariosEdit, QuestionariosView, QuestionariosAddQuestion}
+export {QuestionariosList, QuestionariosAdd, QuestionariosEdit, QuestionariosView, QuestionariosAddQuestion, QuestionariosAnswers}

@@ -19,6 +19,7 @@ export const Hints = {
     "vaga": "Vagas",
     "encaminhamento": "Baixar Encaminhamento",
     "apolice": "Relatório Apólices",
-    "question": "Adicionar perguntas"
+    "question": "Adicionar perguntas",
+    "answer": "Mostrar respostas"
 };
 

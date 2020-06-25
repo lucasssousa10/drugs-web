@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../../services/AuthService';
+import RestService from "../../services/RestService";
 import MessageService from '../../services/MessageService';
 import { Properties } from '../../config';
 import { Icons } from '../../iconSet';
@@ -21,6 +22,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 
 const Auth = new AuthService();
 const Messages = new MessageService();
+const Rest = new RestService();
 
 const LightTooltip = withStyles(theme => ({
 	tooltip: {
@@ -813,6 +815,161 @@ class BasicViewWithDetails extends Component {
 
 /*----------------------------------------------------------------------------------------------------*/
 
+class BasicViewWithDetails2 extends Component {
+
+	constructor(props){
+		super(props);
+
+		this.state = {
+			"detail": null,
+		}
+
+		this.handleLoadAnswers = this.handleLoadAnswers.bind(this);
+		this.handleLoadAnswersResponse = this.handleLoadAnswersResponse.bind(this);
+	}
+
+	handleLoadAnswersResponse(res) {
+		debugger
+		this.setState({detail: res.data})
+	}
+
+	handleLoadAnswers(id) {
+		Rest.get('questionario/resposta/' + id).then(this.handleLoadAnswersResponse);
+	}
+
+	render() {
+
+		let i = 1;
+		let text_fields = this.props.fields.map((field) => {
+			return (
+				<tr key={field.label + '-' + (i++)}>
+					<th><strong>{field.label}</strong></th>
+					<td>{field.value}</td>
+				</tr>
+			);
+		});
+		
+		let data_details = this.props.data_details ? this.props.data_details.map((row) => {
+			return (
+				<tr key={'detail-' + i++}>
+					<td>{row.nome}</td>
+					<td>{row.matricula}</td>
+					<td>{row.data}</td>
+					<td><button answer_id={row.id} onClick={() => this.handleLoadAnswers(row.id)} className="btn btn-success"><i className={ Icons.view }></i></button></td>
+				</tr>
+			);
+		}) : '';
+
+		let data_labels = this.props.labels_details ? this.props.labels_details.map((col) => {
+			return (
+				<th key={'col' + i++}>{Messages.getMessage(col)}</th>
+			);
+		}) : '';
+
+		if (data_labels !== '') {
+			data_labels = data_labels.concat(<th key={'col' + i++}>Ações</th>)
+		}
+
+		let answer_details = this.state.detail ? this.state.detail.respostas.map((ans) => {
+			return (
+				<tr key={'ans-' + i++} >
+					<td>{ ans.pergunta }</td>
+					<td>{ ans.resposta_id }</td>
+				</tr>
+			);
+		}) : '';
+
+		return (
+		<Fragment>
+		<div className="card">
+			{this.props.removeButtons ? '' :
+				<div className="card-header">
+					<div className="card-title"><b>{this.props.title}</b>
+						{this.props.buttonEditRemove ? '' : <button className="btn btn-primary border-left active" onClick={this.props.onClickEdit}>
+							<i className="fas fa-edit" /></button>}
+						{this.props.buttonBackRemove ? '' :
+							<a className="btn btn-primary border-right" href={"javascript:history.back();"}>
+								<i className="fas fa-backward" /></a>}
+					</div>
+				</div>
+			}
+			<div className="card-body">
+				<div className="row">
+					<div className="col-5">
+						<div className="panel panel-default">
+							<div className="panel-body">
+								<table className="table profile__table">
+									<tbody>
+										{text_fields}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div className="col-7">
+						{this.props.navflex}
+					</div>
+				</div>
+				<div className={"row"}>
+					{this.props.button_add}
+					{this.props.button_cancel}
+				</div>
+			</div>
+		</div>
+		{ data_details !== "" &&
+		<Fragment>
+			<br/>
+			<div className="card">
+				<div className="card-header"><b>{this.props.title_details}</b></div>
+				<div className="card-body">
+				<table className="table">
+					<thead>
+						<tr>
+						{ data_labels }
+						</tr>
+					</thead>
+					<tbody>
+						{ data_details }
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</Fragment>
+		}
+		{ this.state.detail !== null &&
+		<Fragment>
+			<br/>
+			<div className="card">
+				<div className="card-header"><b>{this.props.title_details}</b></div>
+				<div className="card-body">
+				<b>Nome: </b> {this.state.detail.nome}<br/>
+				<b>Matrícula: </b> {this.state.detail.matricula}<br/>
+				<br/>
+				<table className="table">
+					<thead>
+						<tr>
+							<th>Pergunta</th>
+							<th>Resposta</th>
+						</tr>
+					</thead>
+					<tbody>
+						{ answer_details }
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</Fragment>
+		}
+
+
+
+		</Fragment>
+		);
+	}
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
 class BasicView extends Component {
 	render() {
 
@@ -968,5 +1125,6 @@ class Modal extends Component {
 
 export { CenterCard, AlertDangerForm, NavBar, SideBar, SideBarItem, SideBarDropDown, SideBarDropDownItem,
 		 SideBarDropDownGroup, SideBarDropDownDivider, Footer, ScrollToTop, TableData, TableData2, CenterCard2, FormPage,
-		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView, BasicViewWithDetails, CardBordered};
+		  FormRow, FormCol, BasicView, Filter, FormColapse, HtmlContentView, BasicViewWithDetails, CardBordered,
+		  BasicViewWithDetails2};
 
