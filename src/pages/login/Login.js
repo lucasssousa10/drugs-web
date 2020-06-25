@@ -63,7 +63,6 @@ class Login extends Component
     		},
     		formErrors: errors.form
     	});
-    //    AlertifyError(errors.form);
 		alertify.error(errors.form[0].message);
 	
 	}

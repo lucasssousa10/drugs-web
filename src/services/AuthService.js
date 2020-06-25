@@ -28,13 +28,21 @@ class AuthService
 				})
 			}
 		).then(res =>
-		{
+		{	
 			if (!res.error) 
 			{
-				this.setToken(res.access_token);
-				this.setRefreshToken(res.refresh_token);
-				this.setUser({role: res.user_role});
-				this.updateProfile(res.access_token);
+				if (res.user_role === 1) {
+					this.setToken(res.access_token);
+					this.setRefreshToken(res.refresh_token);
+					this.setUser({role: res.user_role});
+					this.updateProfile(res.access_token);
+				} else {
+					res.error = true;
+					res.errors = {
+						form: [{message: "O acesso ao módulo WEB só é permitido a administradores."}],
+						fields: {}
+					}
+				}
 			}
 			
 			return Promise.resolve(res);
