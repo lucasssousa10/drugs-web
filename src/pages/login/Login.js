@@ -39,7 +39,7 @@ class Login extends Component
 						label='page.user.login.password' required="required" />
 					<hr />
 					    <div className="col-12 mb-2">
-					        <ButtonSubmit type="submit" className="btn-block" text='page.user.login.submit' />
+					        <ButtonSubmit type="submit" className="btn-block button-login" text='page.user.login.submit' />
 					    </div>
 				</form>
 			</CenterCard>

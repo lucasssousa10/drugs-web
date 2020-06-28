@@ -39,7 +39,7 @@ const LightTooltip = withStyles(theme => ({
 class CenterCard extends Component {
 	render() {
 		return (
-			<div className="card card-login mx-auto mt-5">
+			<div className="card card-login mx-auto mt-5 shadow">
 				<div className="card-header">{Messages.getMessage(this.props.title)}</div>
 				<div className="card-body">
 					{this.props.children}
@@ -234,7 +234,7 @@ class NavBar extends Component {
 
 	render() {
 		return (
-			<nav className="navbar navbar-expand navbar-dark bg-dark static-top">
+			<nav className="navbar navbar-expand navbar-light bg-white shadow static-top">
 
 				<Link className="navbar-brand mr-1" to="/">{Properties.appName}</Link>
 
@@ -245,7 +245,7 @@ class NavBar extends Component {
 				<ul className="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
 					
 					<li className="nav-item dropdown no-arrow">
-						<div class="d-inline-flex">
+						<div className="d-inline-flex">
 						<span id="username-navbar">{ this.state.username }</span>
 						<Link className="nav-link dropdown-toggle" to="#" onClick={this.handleLogoutClick} role="button" aria-haspopup="true" aria-expanded="false">
 							<i className="fa fa-sign-out-alt" />
@@ -263,7 +263,7 @@ class NavBar extends Component {
 class Footer extends Component {
 	render() {
 		return (
-			<footer className="sticky-footer">
+			<footer className="sticky-footer shadow">
 				<div className="container my-auto">
 					<div className="copyright text-center my-auto">
 						<span>{Messages.getMessage('layout.copyright')} © {Properties.company} {Properties.year}</span><br />
@@ -544,7 +544,7 @@ class TableData extends Component
 				<h3>Loading...</h3>
 		</div>;
 		return (
-		    <div className="card mb-3">
+		    <div className="card mb-3 shadow">
 				<div className="card-header">
 					<i className={ Icons.table }/> { Messages.getMessage(this.props.title) }
 					{this.props.buttonRemove ? <div/> : <Link className="btn btn-primary" to={ this.props.addUrl }><i className={ Icons.plus }/></Link> }
@@ -661,7 +661,7 @@ class TableData2 extends Component {
 class FormPage extends Component {
 	render() {
 		return (
-			<div className="card mb-3">
+			<div className="card mb-3 shadow">
 				<div className="card-header">
 					<i className={Icons.table} /> {Messages.getMessage(this.props.title)}
 				</div>

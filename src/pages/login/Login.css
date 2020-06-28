@@ -10,9 +10,14 @@
     color: rgb(127, 208, 242);
 }
 
-.button-form {
+.button-login {
     color: #fff;
     background-color: #80d3f2;
     border-color: #85d1f2;
     width: inherit;
+}
+
+.button-login:hover {
+    background-color: #65ccf2;
+    border-color: #65ccf2;
 }

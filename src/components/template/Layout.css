@@ -2,6 +2,18 @@
 	float: right;
 }
 
+.sidebar {
+  background-color: #6a6c6b;
+}
+
+html {
+  background-color: #f8f9fa;
+}
+
+footer.sticky-footer {
+  z-index: 1;
+}
+
 .card-header > i {
 	padding-top: 10px;
 }
@@ -254,7 +266,7 @@ body{
 
 #username-navbar {
   margin-top: 6px;
-  color: #ffffff;
+  color: #000000;
 }
 
 /*----------------------------------------------------------------------------------------------------*/
@@ -348,3 +360,7 @@ body{
 }
 
 /*----------------------------------------------------------------------------------------------------*/
+
+#wrapper {
+  background-color: #f8f9fc;
+}

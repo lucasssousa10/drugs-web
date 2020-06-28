@@ -62,10 +62,14 @@ class RememberMeInGroup extends Component
 
 class ButtonSubmit extends Component 
 {
+	static defaultProps = {
+		className: ""
+	}
+
 	render() 
 	{
 		return (
-			<input className='btn btn-primary button-form' value={ Messages.getMessage(this.props.text) } type="submit"
+			<input className={'btn btn-primary button-form ' + this.props.className } value={ Messages.getMessage(this.props.text) } type="submit"
 				onClick={ this.props.onClick } />
 		);
 	}
