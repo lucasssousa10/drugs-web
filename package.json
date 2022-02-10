@@ -18,7 +18,7 @@
     "jquery-mask-plugin": "^1.14.16",
     "jwt-decode": "^2.2.0",
     "material-ui": "^0.20.2",
-    "node-sass": "^4.0.0",
+    "node-sass": "^7.0.0",
     "npm": "^6.13.7",
     "popper": "^1.0.1",
     "react": "^16.7.0",
