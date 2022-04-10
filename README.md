@@ -40,7 +40,7 @@ Criar database e usuário do postgres
 
 Verificar se o nome do database no arquivo de configurações do projeto corresponde ao que foi criado
 
-1. SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:3khkydv7@localhost/estagio_web'
+1. SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:SENHA@localhost/NOME_DO_BANCO'
 
 ---
 
